@@ -17,6 +17,66 @@
                document.write ("Setting Cookies : " + "name=" + cookievalue );
                ReadCookie();
             }
+            function redirect()
+            {
+                window.location="https://www.google.com";
+            }
+            function notification()
+            {   var info=prompt("Enter your name here:","")
+            document.write(info)
+                   var retval = confirm("Do you want to continue ?")
+                if(retval==true)
+                {
+                    document.write(" you will be redirected to another website in 10 seconds")
+                setTimeout('redirect()',10000)    
+                }
+                else{
+                    document.write("User declined")
+                }
+                for(var i=0;i<10;i++)
+                var browsername = navigator.appName;
+                document.write(browsername)
+            }
+            function validate()
+            {
+                if( document.myForm.Name.value == "" )
+         {
+            alert( "Please provide your name!" );
+            document.myForm.Name.focus() ;
+            return false;
+         }
+         
+         if( document.myForm.EMail.value == "" )
+         {
+            alert( "Please provide your Email!" );
+            
+            document.myForm.EMail.focus() ;
+            return false;
+         }
+         var emailID = document.myForm.EMail.value;
+         atpos = emailID.indexOf("@");
+         dotpos = emailID.lastIndexOf(".");
+         
+         if (atpos < 1 || ( dotpos - atpos < 2 )) 
+         {
+            alert("Please enter correct email ID")
+            document.myForm.EMail.focus() ;
+            return false;
+         }
+         if(document.myForm.Zip.value=="" || isNaN(document.myForm.Zip.value) || document.myForm.Zip.value.length !=6)
+         {
+             alert("Please provide a valid zipcode")
+             document.myForm.Zip.focus();
+             return false;
+         }
+         if(document.myForm.Country.value=="-1")
+         {
+            alert("Please choose a valid option as your country")
+            document.myForm.country.focus(); 
+             return false;
+         }
+         return (true);
+            }
             function ReadCookie()
             {
                 /*var allcookies = document.cookie;
@@ -40,6 +100,19 @@
                   value = cookiearray[i].split('=')[1];
                   document.write ("Key is : " + name + " and Value is : " + value);
             }
+            var imgobj=null;
+            function init()
+            {
+                imgobj = document.getElementById('img1');
+                imgobj.style.position = 'relative';
+                imgobj.style.left='0px';
+                
+            }
+            function moveright()
+            {
+                imgobj.style.left = parseInt(imgobj.style.left) + 10 + 'px';
+            }
+            window.onload=init;
             }
          </script>
          <noscript>
@@ -52,7 +125,55 @@
              <input type="button" value="Set Cookie" onclick="WriteCookie();"/>
              <br>
              <input type="button" value="View Cookies" onclick="ReadCookie();"/>
-             
+             Click the below button to be redirected to another page,<br>
+             <input type="button" value="redirect" onclick="notification();"/>
+             To print this webpage click the below button.
+             <input type="button" value="Print" onclick="window.print()"/>
         </form>
+   <body onload="init()">
+      <form action="/cgi-bin/test.cgi" name="myForm" onsubmit="return(validate());">
+         <table cellspacing="2" cellpadding="2" border="1">
+            
+            <tr>
+               <td align="right">Name</td>
+               <td><input type="text" name="Name" /></td>
+            </tr>
+            
+            <tr>
+               <td align="right">EMail</td>
+               <td><input type="text" name="EMail" /></td>
+            </tr>
+            
+            <tr>
+               <td align="right">Zip Code</td>
+               <td><input type="text" name="Zip" /></td>
+            </tr>
+            
+            <tr>
+               <td align="right">Country</td>
+               <td>
+                  <select name="Country">
+                     <option value="-1" selected>[choose yours]</option>
+                     <option value="1">USA</option>
+                     <option value="2">UK</option>
+                     <option value="3">INDIA</option>
+                  </select>
+               </td>
+            </tr>
+            
+            <tr>
+               <td align="right"></td>
+               <td><input type="submit" value="Submit" onsubmit=""/></td>
+            </tr>
+            
+         </table>
+      </form>
+       Click the button below to move the image to your right.
+      <input type="button" onclick="moveright();" value="Move Right" />
+      <map name="tutorials">
+        
+      </map>
+   </body>
+</html>
         </body>
 </html>

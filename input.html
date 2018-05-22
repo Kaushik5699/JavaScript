@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script type="text/javascript"  src="C:\Users\Kaushik\Desktop\Web Materials\Image.js">
+        </script>
+    </head>
+    <style>
+    canvas{
+        height:300px;
+        width:300px;
+        border:1px solid blue;
+    }
+    </style>
+    <script type="text/javascript">
+        function upload()
+    {
+        var imgc = document.getElementById("can");
+        var filei = document.getElementById("finput");
+        var image = new SimpleImage(filei);
+        image.drawTo(imgc);
+    }
+    </script>
+<body>
+
+    <canvas id="can">
+    </canvas>
+    <input type="file" multiple="false" accept="image/*" id="finput" onchange="upload()">
+</body>
